@@ -9,26 +9,13 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = "stepDefinitions",
-        tags = "@parametre",
+        tags = "@herokuapp or @dtso",
         //tags = "@ikisi and @java",
-        dryRun = true
+        dryRun = false
 )
 
 public class Runner {
-    /*
-    Bir framework'te 1 tek Runner class' yeterli olabilir.
-    Runner class'i body'sinde hicbir sey olmaz.
-    Runner class'ini onemli yapan 2 adet annotion vardir.
-    @RunWith(Cucumber.class) notasyonu Runner class'ina calisma ozelligi katar
-    Bu notasyon oldugu icin Cucumber framework'unde JUnit kullanmayi tercih ediyoruz
 
-    features: Runner dosyasinin feature dosyalarini nereden bulacagini tarif eder
-    glue: step definitions dosyalarini nerede bulacagimizi gosterir
-    tags: o an hangi tag'i calistirmak istiyorsak onu belli eder
-
-    dryRun: true; testimizi calistirmadan sadece eksik adimlari bize verir
-    dryRun: false; yazdigimizda testlerimizi calistirir
-
-     */
+    // Runner class'i body'si bostur.
 
 }

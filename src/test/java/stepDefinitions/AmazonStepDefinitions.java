@@ -14,11 +14,13 @@ public class AmazonStepDefinitions {
 
     @Given("kullanici amazon anasayfasinda")
     public void kullanici_amazon_anasayfasinda() {
+
         Driver.getDriver().get(ConfigReader.getProperty("amazonUrl"));
     }
 
     @Then("kullanici Nutella icin arama yapar")
     public void kullanici_nutella_icin_arama_yapar() {
+
         amazonPage.aramaKutusu.sendKeys("Nutella" + Keys.ENTER);
     }
 
@@ -51,6 +53,7 @@ public class AmazonStepDefinitions {
 
     @And("kullanici iphone icin arama yapar")
     public void kullaniciIphoneIcinAramaYapar() {
+
         amazonPage.aramaKutusu.sendKeys("iphone" + Keys.ENTER);
     }
 
@@ -91,7 +94,7 @@ public class AmazonStepDefinitions {
     @Then("kullanici {int} sn bekler")
     public void kullaniciSnBekler(int istenenSaniye) {
         try {
-            Thread.sleep(istenenSaniye*1000);
+            Thread.sleep(istenenSaniye * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
