@@ -5,7 +5,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-
+//JUnit'ten geldigi icin Cucumber'da TestNG kullanilmaz
 @CucumberOptions(
         plugin = {"html:target/cucumber-reports.html",
                 "json:target/json-reports/cucumber.json",
@@ -13,11 +13,11 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "stepDefinitions",
-        tags = "@parametre",        //tags = "@ikisi and @java",
+        tags = "@parametre",
         dryRun = false
 )
 
-public class Runner {
+public class TestRunner {
 
     // Runner class'i body'si bostur.
 

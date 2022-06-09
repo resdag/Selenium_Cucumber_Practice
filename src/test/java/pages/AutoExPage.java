@@ -14,10 +14,13 @@ public class AutoExPage {
     public WebElement signupLoginButton;
 
     @FindBy(xpath = "//h2[text()='New User Signup!']")
-    public WebElement newUserSignup;
+    public WebElement newUserSignupTextElement;
 
     @FindBy(xpath = "//input[@name='name']")
-    public WebElement newUserNameBoxElement;
+    public WebElement newUserSignupNameBox;
+
+    @FindBy(xpath = "//input[@data-qa='signup-email']")
+    public WebElement newUserSignupEmailBox;
 
     @FindBy(xpath = "//button[text()='Signup']")
     public WebElement signupButton;
@@ -39,5 +42,29 @@ public class AutoExPage {
 
     @FindBy(xpath = "//*[text()=' Delete Account']")
     public WebElement deleteAccountElement;
+
+    @FindBy(xpath = "//input[@data-qa='login-email']")
+    public WebElement loginYourAccountEmailBox;
+
+    @FindBy(xpath = "//input[@data-qa='login-password']")
+    public WebElement loginYourAccountPasswordBox;
+
+    @FindBy(xpath = "//button[text()='Login']")
+    public WebElement loginButton;
+
+    @FindBy(xpath = "//h2[.='Login to your account']")
+    public WebElement loginYourAccountTextBox;
+
+    @FindBy(xpath = "//p[.='Your email or password is incorrect!']")
+    public WebElement emailOrPasswordIncorrectText;
+
+    @FindBy(xpath = "//a[.=' Logout']")
+    public WebElement logoutButton;
+
+    @FindBy(xpath = "//p[.='Email Address already exist!']")
+    public WebElement emailAdressExistTextElement;
+
+
+
 
 }

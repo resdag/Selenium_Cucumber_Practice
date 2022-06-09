@@ -74,8 +74,41 @@ public class CucumberNote {
         | nutella       | nutella              |
 
 ----------------------------------------------------------------------------------------
+Cucumber Rapor Ekleme
+    * Runner dosyasina plugin eklenerek html raporlama yapilir.
+            plugin = {"html:target/cucumber-reports.html"}, //dosyayi burada olusturur
+    * Rapor almak icin test Runner class'tan calistiririlmalidir
+    * json ve xml raporlar icin de rapor almak icin 2 plugin daha eklemeliyiz
+            plugin = {"html:target/cucumber-reports.html",
+                    "json:target/json-reports/cucumber.json", //Rest Assures kullanilirsa
+                    "junit:target/xml-report/cucumber.xml"}, //Soap API kullanilirsa
+    * Testi Runner'dan calistirinca target altinda cucumber-report'lar olusur.
+----------------------------------------------------------------------------------------
+Hooks ve Screen Shot Ekleme
+    * Hooks senaryolardan once ve sonra calisan kod bloklaridir
+    * Bu kodlar icin stepDefinitions'a Hooks adinda bir class olustur.(isim farkli olabilir)
+    * Failed olan her senaryodan sonra Screen Shot almak icin @After method'u kullanilir
+        @After
+        public void tearDown(Scenario scenario) {
+            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+            if (scenario.isFailed()) {
+                scenario.attach(screenshot, "image/png", "screenshots");
+            }
+            Driver.closeDriver();
+        }
+    * Rapor almak icin testi yine Runner'dan calistirmaliyiz
+    * Failed olan test icin target altindaki cucumber-report.html'ye ScreenShot'i ekler.
+    * Testi güzellestirmek icin plugin eklenebilir
+            - maven-cucumber-reporting
+                    Bunu kullanmak icin terminalden calistirilmalidir. Terminalden calistirma icin 2plugin ekledik
+            - maven-failsafe-plugin
+            - maven-surefire-plugin
+        * plugin'e gore runners> TestRunner olani calistiracagimiz icin TestRunner olmalidir.
+        * Testi Terminalden calistirmak icin 'mvn clean verify' yazilir ve Ctrl+ENTER ile calistirilir
+        * Test bitiminde olusan raporlar target>cucumber-html-reports>js>report-feature ve digerleridir.
 
-
+----------------------------------------------------------------------------------------
+Parelel Testing
 
 
      */
