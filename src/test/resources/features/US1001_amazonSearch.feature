@@ -1,7 +1,7 @@
 @tumu
 Feature: US1001 Kullanici Amazon Sayfasinda Arama Yapar
 
-  @nutella @ikisi
+  @nutella @ikisi @pr1
   Scenario: TC01 kullanici amazonda Nutella aratir
 
     Given kullanici amazon anasayfasinda
@@ -9,7 +9,7 @@ Feature: US1001 Kullanici Amazon Sayfasinda Arama Yapar
     And sonuclarin Nutella icerdigini test eder
     And sayfayi kapatir
 
-  @java @ikisi
+  @java @ikisi @sirali
   Scenario: TC02 kullanici amazonda Java aratir
     Given kullanici amazon anasayfasinda
     Then kullanici Java icin arama yapar

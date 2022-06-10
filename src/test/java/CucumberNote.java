@@ -53,13 +53,13 @@ public class CucumberNote {
             Bunun icin paremtreyi CongigReader ile okumak yeterlidir.
         - Bir methodu her kullanildiginda Exception olmamasi icin stepDefinitions icinde try-catch kullanilir
 ----------------------------------------------------------------------------------------
-    Test Case olustururken
+    Cucumber'da Test Case olustma
         - feature dosyasi olustur
         - kullanilacak verileri configuration.properties'e ekle
         - stepDefinitions class acip feature dosyasinda / runner'dan calistirarak consoldaki eksik stepleri yapistir
         - page class'i olusturup icinde contructor olusturduktan sonra gereken locate'leri yap
         - stepDefinitions'da page sayfasindan objekt olusturarak islemler yapilir.
-
+----------------------------------------------------------------------------------------
     Scenario Outline: Ayni testte birden fazla data ile ayni adimlar uygulaniyorsa kullanilir
         Testin farkli olan kismi "<value>" seklinde yazilir ve
         testlerin sonunda  Examples: |value| seklinde giris datalari yazilmalidir.
@@ -100,16 +100,22 @@ Hooks ve Screen Shot Ekleme
     * Failed olan test icin target altindaki cucumber-report.html'ye ScreenShot'i ekler.
     * Testi güzellestirmek icin plugin eklenebilir
             - maven-cucumber-reporting
-                    Bunu kullanmak icin terminalden calistirilmalidir. Terminalden calistirma icin 2plugin ekledik
+                    Bunu kullanmak icin terminalden calistirilmalidir. Terminalden calistirma icin 2 plugin ekledik
             - maven-failsafe-plugin
             - maven-surefire-plugin
         * plugin'e gore runners> TestRunner olani calistiracagimiz icin TestRunner olmalidir.
         * Testi Terminalden calistirmak icin 'mvn clean verify' yazilir ve Ctrl+ENTER ile calistirilir
         * Test bitiminde olusan raporlar target>cucumber-html-reports>js>report-feature ve digerleridir.
-
 ----------------------------------------------------------------------------------------
-Parelel Testing
-
+Parelel Testing (Birden fazla browser'i es zamanli Calistirma)
+    * Istedigimiz senaryolara ayni tagi verip, bu tag ile runnerdan SIRALI calistirabiliriz
+    * Ayni anda birden fazla browser kullanmak icin farkli taglari calistiracak istedigimiz kadar Runner olustururuz
+    * Bu durumda birden fazla runner'i birlikte calistirmak icin pom-xml'e 2 plugin eklemeliyiz
+                    - maven-failsafe-plugin ---> adimlardan biri failed olsada calistirir
+                    - maven-surefire-plugin ---> <threatCount> tag'i arasinda istenen browser sayisi girilir
+                        Bu sayi kadar TestRunner olusturulmalidir
+    * Detayli rapor almak icin test yine 'mvn clean verify' ile calistirilmalidir.
+        Bu komutla runner>TestRunner'daki tum tag'lar calistirilmis olur.
 
      */
 }
