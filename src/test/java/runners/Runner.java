@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "stepDefinitions",
-        tags = "@tc01",        //tags = "@ikisi and @java",
+        tags = "@autoex",        //tags = "@ikisi and @java",
         dryRun = false
 )
 

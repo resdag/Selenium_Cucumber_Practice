@@ -4,19 +4,26 @@ import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 import pages.AutoExPage;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.time.Duration;
 import java.util.List;
 
 public class AutoExStepDefinitions {
     AutoExPage autoExPage = new AutoExPage();
     Actions actions = new Actions(Driver.getDriver());
     Faker faker = new Faker();
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+    SoftAssert softAssert = new SoftAssert();
     String fakerName = faker.name().fullName();
     String fakerEmail = faker.internet().emailAddress();
     String fakerPassword = faker.internet().password();
@@ -258,9 +265,7 @@ public class AutoExStepDefinitions {
 
     @Given("The products list is visible")
     public void the_products_list_is_visible() {
-
-        // List<WebElement> productsList = autoExPage.productsListElement;
-        // Assert.assertTrue(productsListesi.size() != 0);
+        Assert.assertTrue(autoExPage.productsListElements.size() != 0);
     }
 
     @Given("Click on View Product of first product")
@@ -271,8 +276,10 @@ public class AutoExStepDefinitions {
 
     @Given("User is landed to product detail page")
     public void user_is_landed_to_product_detail_page() {
-        String expectedUrl = ConfigReader.getProperty("firstProductDetails");
+        String expectedUrl = ConfigReader.getProperty("autoExFirstProductDetails");
         String actualUrl = Driver.getDriver().getCurrentUrl();
+        System.out.println("exp = " + expectedUrl);
+        System.out.println("actualUrl = " + actualUrl);
         Assert.assertEquals(expectedUrl, actualUrl);
     }
 
@@ -281,4 +288,114 @@ public class AutoExStepDefinitions {
         Assert.assertTrue(autoExPage.productDetails.getText().contains("Category"));
     }
 
+    @Given("Enter product name in search input and click search button")
+    public void enter_product_name_in_search_input_and_click_search_button() {
+        autoExPage.searchProduct.sendKeys(ConfigReader.getProperty("autoExValidProductName"));
+        autoExPage.searchProductSubmit.click();
+    }
+
+    @Given("Verify SEARCHED PRODUCTS is visible")
+    public void verify_searched_products_is_visible() {
+        String searchedProductText = autoExPage.searchedProduct.getText();
+        System.out.println("searchedProductText = " + searchedProductText);
+        Assert.assertTrue(searchedProductText.contains(ConfigReader.getProperty("autoExValidProductName")));
+    }
+
+    @Given("Verify all the products related to search are visible")
+    public void verify_all_the_products_related_to_search_are_visible() {
+        Assert.assertTrue(autoExPage.searchedProduct.isDisplayed());
+    }
+
+    @Given("Scroll down to footer")
+    public void scroll_down_to_footer() {
+        JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
+        jse.executeScript("arguments[0].click();", autoExPage.subscriptionTitle);
+
+    }
+
+    @Given("Verify text SUBSCRIPTION")
+    public void verify_text_subscription() {
+        Assert.assertTrue(autoExPage.subscriptionTitle.isDisplayed());
+    }
+
+    @Given("Enter email address in input and click arrow button")
+    public void enter_email_address_in_input_and_click_arrow_button() {
+        autoExPage.subscriptionTextBox.sendKeys(ConfigReader.getProperty("autoExInvalidEmail") + Keys.ENTER);
+    }
+
+    @Given("Verify success message You have been successfully subscribed! is visible")
+    public void verify_success_message_you_have_been_successfully_subscribed_is_visible() {
+        Assert.assertTrue(autoExPage.footerElement.getText().contains("You have been successfully subscribed!"));
+    }
+
+    @And("Click Cart button")
+    public void clickCartButton() {
+        autoExPage.cartButton.click();
+    }
+
+    @Given("Hover over first product and click Add to cart")
+    public void hover_over_first_product_and_click_add_to_cart() {
+        autoExPage.firstProductAddToCartButton.click();
+    }
+
+    @Given("Click Continue Shopping button")
+    public void click_continue_shopping_button() {
+        autoExPage.continueShoppingButton.click();
+    }
+
+    @Given("Hover over second product and click Add to cart")
+    public void hover_over_second_product_and_click_add_to_cart() {
+        autoExPage.secondProductAddToCartButton.click();
+    }
+
+    @Given("Click View Cart button")
+    public void click_view_cart_button() {
+        autoExPage.viewCartButton.click();
+    }
+
+    @Given("Verify both products are added to Cart")
+    public void verify_both_products_are_added_to_cart() {
+        softAssert.assertTrue(autoExPage.cartPrductListElements.size() == 2);
+        softAssert.assertAll();
+    }
+
+    @Given("Verify their prices, quantity and total price")
+    public void verify_their_prices_quantity_and_total_price() {
+        // autoExPage.productsButton.click();
+        // String expectedCartFirstElementText = autoExPage.firstProductElement.getText();
+        // String expectedCartSecondElementText = autoExPage.secondProductElement.getText();
+        // String actualCartFirstElementName = autoExPage.cartFirstElementName.getText();
+        // String actualCartSecondElementName = autoExPage.cartSecondElementName.getText();
+        // Driver.getDriver().navigate().back();
+        // Assert.assertTrue(expectedCartFirstElementText.contains(actualCartFirstElementName) &&
+        //         expectedCartSecondElementText.contains(actualCartSecondElementName) &&
+        //         expectedCartFirstElementText.contains(autoExPage.cartTotalPriceElements.get(0).getText())&&
+        //         expectedCartSecondElementText.contains(autoExPage.cartTotalPriceElements.get(1).getText()));
+    }
+
+    @Given("Click View Product for any product on home page")
+    public void click_view_product_for_any_product_on_home_page() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Given("Verify product detail is opened")
+    public void verify_product_detail_is_opened() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Given("Increase quantity to {int}")
+    public void increase_quantity_to(Integer int1) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Given("Click Add to cart button")
+    public void click_add_to_cart_button() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Given("Verify that product is displayed in cart page with exact quantity")
+    public void verify_that_product_is_displayed_in_cart_page_with_exact_quantity() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 }

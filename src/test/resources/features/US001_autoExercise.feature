@@ -1,3 +1,4 @@
+@autoex
 Feature: US001 Automation Exercise sayfasindaki testler yapilmalidir
 
   @aetc01
@@ -90,7 +91,7 @@ Feature: US001 Automation Exercise sayfasindaki testler yapilmalidir
     And Verify user is navigated to test cases page successfully
 
   @aetc08
-  Scenario: Verify All Products and product detail page
+  Scenario: TC08 Verify All Products and product detail page
     Given Launch browser and Navigate to url "autoExUrl"
     And Verify that home page is visible successfully
     And Click on Products button
@@ -99,3 +100,55 @@ Feature: US001 Automation Exercise sayfasindaki testler yapilmalidir
     And Click on View Product of first product
     And User is landed to product detail page
     And Verify that detail detail is visible: product name, category, price, availability, condition, brand
+
+  @aetc09
+  Scenario: TC09 Search Product
+    Given Launch browser and Navigate to url "autoExUrl"
+    And Verify that home page is visible successfully
+    And Click on Products button
+    And Verify user is navigated to ALL PRODUCTS page successfully
+    And Enter product name in search input and click search button
+    And Verify SEARCHED PRODUCTS is visible
+    And Verify all the products related to search are visible
+
+  @aetc10
+  Scenario: TC10 Verify Subscription in home page
+    Given Launch browser and Navigate to url "autoExUrl"
+    And Verify that home page is visible successfully
+    And Scroll down to footer
+    And Verify text SUBSCRIPTION
+    And Enter email address in input and click arrow button
+    And Verify success message You have been successfully subscribed! is visible
+
+  @aetc11
+  Scenario: TC11 Verify Subscription in Cart page
+    Given Launch browser and Navigate to url "autoExUrl"
+    And Verify that home page is visible successfully
+    And Click Cart button
+    And Scroll down to footer
+    And Verify text SUBSCRIPTION
+    And Enter email address in input and click arrow button
+    And Verify success message You have been successfully subscribed! is visible
+
+  @aetc12
+  Scenario: TC12 Add Products in Cart
+    Given Launch browser and Navigate to url "autoExUrl"
+    And Verify that home page is visible successfully
+    And Click on Products button
+    And Hover over first product and click Add to cart
+    And Click Continue Shopping button
+    And Hover over second product and click Add to cart
+    And Click View Cart button
+    And Verify both products are added to Cart
+    And Verify their prices, quantity and total price
+
+  @aetc13
+  Scenario: TC13 Verify Product quantity in Cart
+    Given Launch browser and Navigate to url "autoExUrl"
+    And Verify that home page is visible successfully
+    And Click View Product for any product on home page
+    And Verify product detail is opened
+    And Increase quantity to 4
+    And Click Add to cart button
+    And Click View Cart button
+    And Verify that product is displayed in cart page with exact quantity

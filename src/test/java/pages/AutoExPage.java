@@ -5,6 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import java.util.List;
+
 public class AutoExPage {
     public AutoExPage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -103,14 +105,75 @@ public class AutoExPage {
     @FindBy(xpath = "//h2[text()='All Products']")
     public WebElement allProductsTextElement;
 
-    @FindBy(xpath = "//div[@class='single-products']")
-    public WebElement productsListElement;
+    @FindBy(xpath = "//div[@class='productinfo text-center']")
+    public List<WebElement> productsListElements;
 
     @FindBy(xpath = "(//li[.='View Product'])[1]")
     public WebElement firstViewProduct;
 
     @FindBy(xpath = "//div[@class='product-information']")
     public WebElement productDetails;
+
+    @FindBy(xpath = "//input[@id='search_product']")
+    public WebElement searchProduct;
+
+    @FindBy(xpath = "//button[@id='submit_search']")
+    public WebElement searchProductSubmit;
+
+    @FindBy(xpath = "//div[@class='productinfo text-center']")
+    public WebElement searchedProduct;
+
+    @FindBy(xpath = "//h2[.='Subscription']")
+    public WebElement subscriptionTitle;
+
+    @FindBy(xpath = "//input[@id='susbscribe_email']")
+    public WebElement subscriptionTextBox;
+
+    @FindBy(xpath = "//div[@class='footer-widget']")
+    public WebElement footerElement;
+
+    @FindBy(xpath = "//a[text()=' Cart']")
+    public WebElement cartButton;
+
+    @FindBy(xpath = "//a[text()='Add to cart']")
+    public List<WebElement> productsAddToCartElements;
+
+    @FindBy(xpath = "//button[.='Continue Shopping']")
+    public WebElement continueShoppingButton;
+
+    @FindBy(xpath = "//u[.='View Cart']")
+    public WebElement viewCartButton;
+
+    @FindBy(xpath = "//tbody//tr")
+    public List<WebElement> cartPrductListElements;
+
+    @FindBy(xpath = "(//div[@class='single-products'])[1]")
+    public WebElement firstProductElement;
+
+       @FindBy(xpath = "(//a[text()='Add to cart'])[1]")
+    public WebElement firstProductAddToCartButton;
+
+    @FindBy(xpath = "//a[@href='/product_details/1']")
+    public WebElement cartFirstElementName;
+
+    @FindBy(xpath = "(//div[@class='single-products'])[2]")
+    public WebElement secondProductElement;
+
+    @FindBy(xpath = "(//a[text()='Add to cart'])[3]")
+    public WebElement secondProductAddToCartButton;
+
+    @FindBy(xpath = "//a[@href='/product_details/2']")
+    public WebElement cartSecondElementName;
+
+    @FindBy(xpath = "//td[@class='cart_price']")
+    public List<WebElement> cartPriceElements;
+
+    @FindBy(xpath = "//td[@class='cart_quantity']")
+    public List<WebElement> cartQuantityElements;
+
+    @FindBy(xpath = "//td[@class='cart_quantity']")
+    public List<WebElement> cartTotalPriceElements;
+
 
 
 }
